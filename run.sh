@@ -40,9 +40,9 @@ echo "    Processes: ${PROCESSES}"
 echo "      Threads: ${THREADS}"
 echo ""
 
+cd /app/${APP_MODULE}
+
 echo "Collect static files"
 python3 manage.py collectstatic --noinput
-
-cd /app/${APP_NAME}
 
 uwsgi --socket "0.0.0.0:${APP_PORT}" --protocol ${APP_PROTOCOL} --module ${APP_MODULE}.wsgi --master --processes ${PROCESSES} --threads ${THREADS}
